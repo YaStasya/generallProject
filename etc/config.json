@@ -1,0 +1,9 @@
+{
+  "apiPrefix": "http://localhost/3005",
+  "serverPort": "3005",
+  "db": {
+    "name": "menus",
+    "host": "localhost",
+    "port": 27017
+  }
+}
