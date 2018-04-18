@@ -9,3 +9,14 @@ export function setUpConnection(){
 export function ListMenu(){
     return Menu.find()
 }
+
+export function createMenu(data) {
+    const menu = new Menu({
+        title: data.title,
+        titlePage: data.titlePage,
+        url: data.url,
+        createdAt: new Date()
+    });
+
+    return menu.save();
+}

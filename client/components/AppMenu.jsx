@@ -3,9 +3,9 @@ import React from 'react';
 import MenuAction from '../actions/MenuAction.js';
 import MenuStore from '../stores/MenuStores.js';
 
-import Menu from './Menu.jsx';
 import MenuEditor from './MenuEditor.jsx';
 import MenuGrid from './MenuGrid.jsx';
+import { BrowserRouter } from 'react-router-dom';
 
 function getStateFromFlux(){
     return {
@@ -20,10 +20,8 @@ export default class AppMenu extends React.Component {
         super(props);
 
         this._onChange = this._onChange.bind(this);
+        this.state = getStateFromFlux();
     }
-    getInitialState(){
-        return getStateFromFlux();
-    };
     componentWillMount() {
         MenuAction.loadMenu();
     };
@@ -43,9 +41,9 @@ export default class AppMenu extends React.Component {
     render(){
         return (
             <div className="App">
-                <div className="App_header">AppMenu</div>
-                <MenuEditor onMenuAdd={this.handleMenuAdd}/>
-                <MenuGrid />
+                <BrowserRouter>
+                <MenuGrid menu={this.state.menu}/>
+                </BrowserRouter>
             </div>
         )
     }

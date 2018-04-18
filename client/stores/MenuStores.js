@@ -5,17 +5,17 @@ import AppConstants from '../constants/AppConstants';
 
 const CHANGE_EVENT = 'change';
 
-    let _menu = [];
+let _menu = [];
 let _loadingError = null;
 let _isLoading = true;
 
 function formatMenu(menu) {
     return {
-        id: menu._id,
-        title: menu.title,
-        titlePage: menu.titlePage,
-        url: menu.url,
-        createdAt: menu.createdAt
+        id          : menu._id,
+        title       : menu.title,
+        titlePage   : menu.titlePage,
+        url         : menu.url,
+        createdAt   : menu.createdAt
     };
 }
 

@@ -4,14 +4,14 @@ import axios from 'axios';
 
 export default {
     listMenu() {
-        return axios.get(`http://localhost/3005/menu`);
+        return axios.get(`http://localhost:3005/menu`);
     },
 
     createMenu(data) {
-        return axios.post(`http://localhost/3005/menu`, data);
+        return axios.post(`http://localhost:3005/menu`, data);
     },
 
     deleteMenu(menuId) {
-        return axios.delete(`http://localhost/3005/menu/${menuId}`);
+        return axios.delete(`http://localhost:3005/menu/${menuId}`);
     }
 }

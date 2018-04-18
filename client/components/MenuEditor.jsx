@@ -5,10 +5,10 @@ export default class MenuEditor extends React.Component {
         super(props);
 
         this.state = {
-            user: {
+            menu: {
                 title: '',
                 titlePage: '',
-                url: ''
+                url: '',
             }
         };
 

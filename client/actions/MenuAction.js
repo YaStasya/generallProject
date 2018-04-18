@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Constants from '../constants/AppConstants';
 
-import api from '../api';
+import api from '../api/index';
 
 const MenuActions = {
     loadMenu() {
