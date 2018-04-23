@@ -4,8 +4,10 @@ import cors from 'cors';
 import session from 'express-session';
 var MongoStore = require('connect-mongo')(session);
 import { serverPort } from '../etc/config.json';
-//const jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
+//import React from 'react';
+import path from 'path';
+
 
 import * as db from './utils/DataBaseUtils.js';
 db.setUpConnection()
@@ -16,12 +18,22 @@ dbUser.setUpConnection()
 import * as dbFilm from './utils/DataBaseUtilsFilm.js';
 dbFilm.setUpConnection()
 
+import * as dbOrder from './utils/DataBaseUtilsOrder.js';
+dbOrder.setUpConnection()
+
 const app = express();
 
+var userId = '';
+
 app.use(bodyParser.json());
-//app.use(express.session());
 app.use(cookieParser());
 app.use(cors({orgin:'*'}));
+
+//app.use(express.static(path.join(__dirname, 'public')));
+
+/*app.get('*', function(request, response) {
+    response.sendFile('C:/Users/Пользователь/WebstormProjects/untitled/public/index.html');
+});*/
 
 var sessionStore = new MongoStore({
     host: '127.0.0.1',
@@ -51,13 +63,15 @@ app.use(session({
 }));
 
 app.get('/', function(req,res){
-    console.log(req.cookies.userId);
-    if(req.session.userId){
-        console.log(11111)
+    if(userId != ''){
+        req.session.userId = userId;
+        res.status(200)
     } else {
-        console.log(22222)
+        res.status(401)
     }
+    /**/
 });
+
 
 app.get('/menu', function(req,res){
   db.ListMenu().then(data => res.send(data));
@@ -71,6 +85,7 @@ app.delete('/menus/:id', (req, res) => {
     db.deleteMenu(req.params.id).then(data => res.send(data));
 });
 
+
 app.get('/films', function(req,res){
     dbFilm.ListFilm().then(data => res.send(data));
 });
@@ -81,12 +96,28 @@ app.post('/films', (req, res) => {
 
 app.delete('/films/:id', (req, res) => {
     dbFilm.deleteFilm(req.params.id).then(data => res.send(data));
+
+});
+
+app.get('/order', function(req,res){
+    console.log(req)
+    dbOrder.ListOrder(req.body.email).then(data => res.send(data));
+});
+
+app.post('/order', (req, res) => {
+    dbOrder.createOrder(req.body).then(data => res.send(data));
 });
 
 
-
 app.get('/user', (req, res) => {
-    dbUser.logoIn(req.body).then(data => res.send(data));
+    if(userId != ''){
+        dbUser.logoIn(req.body).then(data => res.send(data),);
+        req.session.userId = userId;
+        console.log(req.session.userId)
+        res.status(200)
+    } else {
+        res.status(401)
+    }
 });
 app.post('/user', (req, res) => {
     if (req.body.email &&
@@ -102,13 +133,14 @@ app.post('/user', (req, res) => {
     } else if (req.body.email && req.body.password) {
         dbUser.authUser(req.body.email, req.body.password, function(ret, id){
             if(ret == true) {
-                req.session.userId = id;
-                req.cookies.userId=id
-                req.session.save();
-                console.log(req.cookies.userId);
-                console.log('---------------------------------------------------------------------------------------------------------');
-                res.redirect('/');
+                userId = id;
+                res.status(200)
+            } else {
+                userId = id;
+                res.status(401);
             }
+            res.redirect('/');
+            data => res.send(data)
         });
     } else {
         var err = new Error('All fields required.');
@@ -117,9 +149,19 @@ app.post('/user', (req, res) => {
     }
 });
 
+app.get('/logout', (req, res) => {
+    if(userId != ''){
+        userId='';
+        req.session.userId = userId;
+        res.status(401)
+    } else {
+        res.status(401)
+    }
+    res.redirect('/');
+});
+
 app.get('/profile', function (req, res) {
-    console.log(req.session.userId)
-    dbUser.profile(req.session.userId);
+    dbUser.profile(userId);
 });
 
 

@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import '../models/User';
-import session from 'express-session';
 
 const User = mongoose.model('User');
 export function setUpConnection(){
@@ -26,11 +25,11 @@ export function authUser(nowEmail, nowPass, callback) {
     User.authenticate(nowEmail, nowPass, function (error, user) {
         if (error || !user) {
             var err = new Error('Wrong email or password.');
-            err.status = 401;
-            return ('Ошибка');
+            var ret = false;
+            callback(ret, '', err);
         } else {
             var ret = true;
-            callback(ret, user.id);
+            callback(ret, user.id, '');
         }
     });
 }
@@ -45,7 +44,7 @@ export function profile(data) {
                     err.status = 400;
                     return ('Ошибка');
                 } else {
-                    return res.send('<h1>Name: </h1>' + user.userName + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+                    return user;
                 }
             }
         });

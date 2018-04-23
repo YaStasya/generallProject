@@ -44,21 +44,129 @@ h6 {font-size: 16px;}
 #custommenu ul li a{color:#fff}
 #custommenu ul li a:hover{text-decoration:underline}
 
+/*-----Фильмы----*/
 .filList h2{font-size: 45px;text-align: center;font-family: Comic Sans MS, Monaco, cursive;}
 .filList ul{list-style: none;display: grid;grid-template-columns: repeat(4, 1fr);grid-gap: 10px;grid-auto-rows: minmax(100px, auto);padding: 0;}
 .filList ul li{position:relative;text-align:center;}
 .filList ul li:nth-child(2){grid-column: 2 / 4;grid-row: 1 / 3;}
 .filList ul li img{width:100%;}
 .filList ul li .moreAbFilm{display:none;position:absolute;bottom:30px;font-size:18px;text-align:center;width:100%}
-.filList ul li .moreAbFilm a{padding:15px 30px;background:#880707;color:#fff;}
+.filList ul li .ui.button,.showFormOrder{padding:15px 30px;background:#880707;color:#fff;border-radius:none}
+.descr{font-weight:bold;font-size:16px;margin:5px 0}
+.descr span{font-weight:normal;}
+.showFormOrder{display:inline-block}
+.showFormOrder:hover{color:#fff;text-decoration:underline}
 .filList ul li:hover .moreAbFilm{display:block}
+.width{max-width:600px}
 
 
-
+#news .title {margin-bottom: 30px;}
+#news .item {padding: 0;}
+#news .item .date {float: left;width: 110px;height: 110px;color: #fff;margin-right: 15px;margin-bottom: 10px;background: url("/img/calendar.png");text-align: center;}
+#news .item .date .d-month {display: block;position: relative;top: 10px;font-size: 18px;}
+#news .item .date .d-day {display: block;position: relative;top: 12px;font-size: 48px;}
+#news .item .title {display: inline-block;text-align: center;font-size: 24px;margin-bottom: 10px;}
+#news .item .content {display: inline-block;width: 80%;text-align: left;}
 
 
 .FilmEditor input, .FilmEditor textarea{margin:5px 0}
+#user{padding:10px}
+.AppAuth{position:relative;text-align: center}
+.AppAuth i {color:#fff;font-size:25px;}
+.AppAuth .hiddenBlock{display:none;position:absolute;top:130%;right:0;text-align: right;background:#fff;border:2px solid #880707;border-radius:8px;min-width:130px;padding:10px;}
+.AppAuth:hover .hiddenBlock{display:block}
+.AppAuth .hiddenBlock:before{content: '';position: absolute;right: 27px; top: -20px;border: 10px solid transparent;border-bottom: 10px solid #fff;}
+.AppAuth .hiddenBlock ul{list-style:none;padding:0}
+.AppAuth .hiddenBlock .form-group input{margin:3px 0}
+.AppAuth .hiddenBlock .form-group input{margin:3px 0}
+.AppAuth .hiddenBlock div.infoUser{margin-top:10px}
+.AppAuth .hiddenBlock div.infoUser p{font-size:13px;line-height:14px}
+.AppAuth .hiddenBlock div.infoUser a{color:#880707;text-decoration:underline}
 
+
+.OrderEditor input,.OrderEditor select{margin:5px 0;font-size:18px;min-width:250px;border:2px solid #880707;border-radius:4px;height:35px;display:block;padding-left:10px}
+.OrderEditor .OrderEditor_button{padding: 15px 30px;background: #880707;color: #fff;border:none;font-size:18px;margin:5px 0;}
+
+
+.zal{position:relative}
+.mestokt {
+    max-width: 100%;
+    min-width: 100%;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+
+    border-radius: 3px;
+    background-color: #008b00;
+    text-align:center;
+    display:table;
+    vertical-align:middle;
+    border:1px solid rgba(0,0,0,0);
+}
+
+.rad_job{
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+    border-radius: 3px;
+    text-align:center;
+    display:table;
+    vertical-align:middle;
+}
+
+#price_z2{
+    display:none;
+}
+
+.mestokt.type_1,
+.vitrina.type_1 .mestokt {
+    cursor: default;
+    background-color: #9a0000;
+}
+.vitrina .mestokt{
+    top: 5px;
+    position: relative;
+}
+.mestokt.type_2,
+.vitrina.type_2 .mestokt {
+    cursor: default;
+    background-color: #fff;
+}
+.vitrina.selectedm .mestokt,
+.mestokt.selectedm {
+    cursor: default;
+    background-color: #ffd602;
+    color:#000;
+}
+.mestokt.type_1 .mesto{
+    color:#fff !important;
+}
+.mestokt .price_kt,
+.mestokt .rad {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font-size: 10px;
+    display:none !important;
+}
+.zal_abs_new .mesto {
+    font-family: Arial;
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 100%;
+    color:#000;
+}
 
 #footer{min-height:60px;background:#880707;padding:10px 0}
 #footer .logoFooter img{max-width:100px}
@@ -79,6 +187,9 @@ h6 {font-size: 16px;}
 .col-xs-3{width:25%}
 .col-xs-2{width:16.66666667%}
 .col-xs-1{width:8.33333333%}
+@media all and (max-width: 767px) {
+    .container {width: 100%;}
+}
 @media all and (min-width: 768px) {
     .col-sm-12{width:100%}
     .col-sm-11{width:91.66666667%}

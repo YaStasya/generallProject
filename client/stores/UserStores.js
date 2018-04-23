@@ -6,6 +6,7 @@ import AppConstants from '../constants/AppConstantsUser';
 const CHANGE_EVENT = 'change';
 
 let _user = [];
+let _status = [];
 let _loadingError = null;
 let _isLoading = true;
 
@@ -26,6 +27,9 @@ const TasksStore2 = Object.assign({}, EventEmitter.prototype, {
 
     getUser() {
         return _user;
+    },
+    getStatus() {
+        return _status;
     },
 
     emitChange: function() {
@@ -54,6 +58,7 @@ AppDispatcher.register(function(action) {
             _isLoading = false;
             _user = action.user.map( formatUser );
             _loadingError = null;
+            _status = action.status;
 
             TasksStore2.emitChange();
             break;

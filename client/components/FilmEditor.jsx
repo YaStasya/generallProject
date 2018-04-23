@@ -58,7 +58,6 @@ export default class FilmEditor extends React.Component {
     };
 
     handleFilmAdd(event){
-        console.log(1111112);
         const newFilm = {
             title       : this.state.title,
             decrition   : this.state.decrition,

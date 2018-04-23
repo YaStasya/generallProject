@@ -14,7 +14,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
             } else if (!user) {
                 var err = new Error('User not found.');
                 err.status = 401;
-                return callback(err);
+                return callback(err, '');
             } else {
                 if (password == user.password) {
                     return callback(null, user);

@@ -7,10 +7,13 @@ import FormAuth from './FormAuth.jsx';
 import FormRegistr from './Registration.jsx';
 import User from './AllUser.jsx';
 
+import { BrowserRouter, Link, Route } from 'react-router-dom';
+
 function getStateFromFlux(){
     return {
         isLoading: UserStore.isLoading(),
-        user: UserStore.getUser()
+        user: UserStore.getUser(),
+        status: UserStore.getStatus()
     }
 }
 
@@ -40,14 +43,40 @@ export default class AppAuth extends React.Component {
     handleUserLogin(userData) {
         UserActions.loginUser(userData);
     }
+    handleUserLogout(userData) {
+        UserActions.logoutUser();
+    }
+/*<FormRegistr onUserAdd={this.handleUserAdd}/>*/
     render(){
-        return (
-            <div className="AppAuth">
-                <FormAuth  onUserLogin={this.handleUserLogin}/>
-                <FormRegistr  onUserAdd={this.handleUserAdd}/>
-                <User user={this.state.user}/>
-            </div>
-        )
+        if(this.state.status == '200'){
+            return (
+                <div className="AppAuth">
+                    <i className="fa fa-user-circle-o"></i>
+                    <div className="hiddenBlock">
+                            <div>
+                                <ul>
+                                    <li><Link to="/profile">Мой профиль</Link></li>
+                                    <li><a onClick={this.handleUserLogout}>Выход</a></li>
+                                </ul>
+                                <div>
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="AppAuth">
+                    <i className="fa fa-user-circle-o"></i>
+                    <div className="hiddenBlock">
+                        <FormAuth display={this.state.visibleAuth} onUserLogin={this.handleUserLogin}/>
+                        <User user={this.state.user}/>
+                    </div>
+                </div>
+            )
+        }
+
     }
     _onChange(){
         this.setState(getStateFromFlux());

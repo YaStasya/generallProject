@@ -30,16 +30,17 @@ export default class FormAuth extends React.Component {
         this.props.onUserLogin(user);
     };
     render(){
+       // const style = { display: display };
         return (
-            <div>
+            <div >
                 <div>
-                    <div className="form-group">
+                    <div className="form-group" >
                         <input type="text" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} />
                         <input type="password" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.password}/>
                     </div>
                     <button  onClick={this.handleUserLogin}>Вход</button>
                 </div>
-                <div><p>Если Вы еще не имеете свой аккаунт, то можете <a href="/registration">зарегистрироваться</a>.</p></div>
+                <div className="infoUser"><p>Если у Вас нет аккаунта, то <a href="/registration">зарегистрируйтесь</a>.</p></div>
             </div>
 
         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class MenuGrid extends React.Component {
     render(){
@@ -13,12 +13,6 @@ export default class MenuGrid extends React.Component {
                         }
                     </ul>
                 </nav>
-                <div>
-                    {this.props.menu.map(menu =>
-                        <Route path={menu.url} component=''/>
-                    )
-                    }
-                </div>
             </div>
 
         )

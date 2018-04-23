@@ -3,9 +3,7 @@ import React from 'react';
 import MenuAction from '../actions/MenuAction.js';
 import MenuStore from '../stores/MenuStores.js';
 
-import MenuEditor from './MenuEditor.jsx';
 import MenuGrid from './MenuGrid.jsx';
-import { BrowserRouter } from 'react-router-dom';
 
 function getStateFromFlux(){
     return {
@@ -40,10 +38,10 @@ export default class AppMenu extends React.Component {
     };
     render(){
         return (
-            <div className="App">
-                <BrowserRouter>
-                <MenuGrid menu={this.state.menu}/>
-                </BrowserRouter>
+            <div>
+                <div className="App">
+                    <MenuGrid menu={this.state.menu}/>
+                </div>
             </div>
         )
     }

@@ -27,7 +27,6 @@ export default class FormRegistr extends React.Component {
         this.setState({password:event.target.value})
     };
     handleUserAdd(event){
-        console.log(333333)
         const newUser = {
             userName: this.state.userName,
             email: this.state.email,
