@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import '../models/User';
+var ObjectId = require('mongodb').ObjectID;
 
 const User = mongoose.model('User');
 export function setUpConnection(){
@@ -34,8 +35,10 @@ export function authUser(nowEmail, nowPass, callback) {
     });
 }
 export function profile(data) {
-    User.findById(data)
+    return User.find({ "_id": ObjectId(data) })
+    /*User.find({ "_id": ObjectId(data) })
         .exec(function (error, user) {
+            console.log('Данные из бд' + user)
             if (error) {
                 return error;
             } else {
@@ -47,5 +50,5 @@ export function profile(data) {
                     return user;
                 }
             }
-        });
+        });*/
 }

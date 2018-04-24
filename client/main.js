@@ -10,6 +10,8 @@ import Gallery from './page/Gallery.jsx';
 import News from './page/News.jsx';
 import Contacts from './page/Contacts.jsx';
 import UserArea from './components/UserArea.jsx';
+import FilmList from './components/FilmList.jsx';
+import Registration from './components/Registration.jsx';
 
 
 ReactDOM.render(
@@ -38,7 +40,9 @@ ReactDOM.render(
                 <Route path="/news" component={News}/>
                 <Route path="/contacts" component={Contacts}/>
                 <Route path="/profile" component={UserArea}/>
-                <Route path="/logout" component=""/>
+                <Route path="/films" component={FilmList}/>
+                <Route path="/registration" component={Registration}/>
+
             </div>
             </div>
         </BrowserRouter>

@@ -1,4 +1,5 @@
 import React from 'react';
+import UserActions from "../actions/UserAction";
 
 export default class FormRegistr extends React.Component {
     constructor(props) {
@@ -27,22 +28,31 @@ export default class FormRegistr extends React.Component {
         this.setState({password:event.target.value})
     };
     handleUserAdd(event){
-        const newUser = {
-            userName: this.state.userName,
-            email: this.state.email,
-            password: this.state.password
-        };
+       if(this.state.userName || this.state.email || this.state.password){
+           if(this.state.userName || this.state.email || this.state.password){
+               alert('Заполните все поля!')
+           } else {
+               const newUser = {
+                   userName: this.state.userName,
+                   email: this.state.email,
+                   password: this.state.password
+               };
 
-        this.props.onUserAdd(newUser);
-        this.setState({userName:'',email:'',password:''});
+               UserActions.createUser(newUser);
+               this.setState({userName:'',email:'',password:''});
+           }
+       } else {
+           alert('Заполните все поля!')
+       }
     };
     render(){
         return (
-            <div>
+            <div className="container registBlock">
+                <h1>Регистрация</h1>
                     <div className="form-group">
-                        <input type="text" name="userName" placeholder="User Name" onChange={this.handleUserNameChange} value={this.state.userName}/>
-                        <input type="text" name="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email}/>
-                        <input type="password" name="password" placeholder="Пароль" onChange={this.handlePasswordChange} value={this.state.password}/>
+                        <input type="text" name="userName" placeholder="Имя" onChange={this.handleUserNameChange} value={this.state.userName} requied/>
+                        <input type="text" name="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} requied/>
+                        <input type="password" name="password" placeholder="Пароль" onChange={this.handlePasswordChange} value={this.state.password} requied/>
                     </div>
                     <button onClick={this.handleUserAdd}>Зарегистрироваться</button>
             </div>

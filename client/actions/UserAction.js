@@ -1,4 +1,4 @@
-import AppDispatcher from '../dispatcher/AppDispatcher';
+import AppDispatcherUser from '../dispatcher/AppDispatcherUser';
 import Constants from '../constants/AppConstantsUser';
 
 import api from '../api/indexUser';
@@ -13,20 +13,20 @@ function getStateFromFlux(){
 }
 const UserActions = {
     loadUser() {
-        AppDispatcher.dispatch({
+        AppDispatcherUser.dispatch({
             type: Constants.LOAD_USER_REQUEST
         });
 
         api.listUser()
             .then(({ data, status }) =>
-                AppDispatcher.dispatch({
+                AppDispatcherUser.dispatch({
                     type: Constants.LOAD_USER_SUCCESS,
                     user: data,
                     status: status
                 })
             )
             .catch(err =>
-                AppDispatcher.dispatch({
+                AppDispatcherUser.dispatch({
                     type: Constants.LOAD_USER_FAIL,
                     error: err
                 })
@@ -34,14 +34,14 @@ const UserActions = {
     },
 
     loginUser(user) {
-        AppDispatcher.dispatch({
+        AppDispatcherUser.dispatch({
             type: Constants.LOAD_USER_REQUEST
         });
 
         api.findUser(user)
             .then(({status}) =>
-                AppDispatcher.dispatch({
-                    type: Constants.LOAD_USER_SUCCESS,
+                AppDispatcherUser.dispatch({
+                    type: Constants.LOAD_USER_SUCCESS_2,
                     status: status
                 })
             )
@@ -61,13 +61,13 @@ const UserActions = {
     },
 
     logoutUser(user) {
-        AppDispatcher.dispatch({
+        AppDispatcherUser.dispatch({
             type: Constants.LOAD_USER_REQUEST
         });
 
         api.logout()
             .then(({status })=>
-                AppDispatcher.dispatch({
+                AppDispatcherUser.dispatch({
                     type: Constants.LOAD_USER_SUCCESS,
                     user: '',
                     status: status
@@ -76,27 +76,8 @@ const UserActions = {
             .catch(err =>
                 console.log(err)
             );
-    },
-    profileUser(user) {
-        AppDispatcher.dispatch({
-            type: Constants.LOAD_USER_REQUEST
-        });
+    }
 
-        api.profileUser()
-            .then(({ data, status }) =>
-                AppDispatcher.dispatch({
-                    type: Constants.LOAD_USER_SUCCESS,
-                    user: data,
-                    status: status
-                })
-            )
-            .catch(err =>
-                AppDispatcher.dispatch({
-                    type: Constants.LOAD_USER_FAIL,
-                    error: err
-                })
-            );
-    },
 };
 
 export default UserActions;

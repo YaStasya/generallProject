@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-import AppDispatcher from '../dispatcher/AppDispatcher';
+import AppDispatcherUser from '../dispatcher/AppDispatcherUser';
 import AppConstants from '../constants/AppConstantsUser';
 
 const CHANGE_EVENT = 'change';
@@ -45,7 +45,7 @@ const TasksStore2 = Object.assign({}, EventEmitter.prototype, {
     }
 });
 
-AppDispatcher.register(function(action) {
+AppDispatcherUser.register(function(action) {
     switch(action.type) {
         case AppConstants.LOAD_USER_REQUEST: {
             _isLoading = true;
@@ -55,6 +55,16 @@ AppDispatcher.register(function(action) {
         }
 
         case AppConstants.LOAD_USER_SUCCESS: {
+            _isLoading = false;
+            _user = action.user.map( formatUser );
+            _loadingError = null;
+            _status = action.status;
+
+            TasksStore2.emitChange();
+            break;
+        }
+
+        case AppConstants.LOAD_USER_SUCCESS_2: {
             _isLoading = false;
             _user = action.user.map( formatUser );
             _loadingError = null;

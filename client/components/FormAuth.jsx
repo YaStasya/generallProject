@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class FormAuth extends React.Component {
     constructor(props) {
@@ -40,7 +41,7 @@ export default class FormAuth extends React.Component {
                     </div>
                     <button  onClick={this.handleUserLogin}>Вход</button>
                 </div>
-                <div className="infoUser"><p>Если у Вас нет аккаунта, то <a href="/registration">зарегистрируйтесь</a>.</p></div>
+                <div className="infoUser"><p>Если у Вас нет аккаунта, то <Link to="/registration">зарегистрируйтесь</Link>.</p></div>
             </div>
 
         )

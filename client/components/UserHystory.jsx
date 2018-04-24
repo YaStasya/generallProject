@@ -31,12 +31,29 @@ export default class UserHistory extends React.Component {
     render(){
         //if(this.state.status == '200'){
             return (
-                <div className="AppUser container">
+                <div className="AppUserHystory">
                     <h2>История бронирования</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Название фильма</td>
+                            <td>Время сеанса</td>
+                            <td>Ряд</td>
+                            <td>Место</td>
+                        </tr>
+                        </thead>
+                    <tbody>
                     {this.state.order.map(order =>
-                        <div><p>Имя: {order.name_film} - {order.date} {order.time}</p></div>
+                        <tr>
+                            <td>{order.name_film}</td>
+                            <td>{order.date} {order.time}</td>
+                            <td>{order.row}</td>
+                            <td>{order.places}</td>
+                        </tr>
                     )
                     }
+                    </tbody>
+                    </table>
                 </div>
             )
 

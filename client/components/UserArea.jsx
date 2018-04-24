@@ -1,13 +1,13 @@
-import UserStore from "../stores/UserStores";
+import UserProfileStore from "../stores/UserProfileStores";
 import React from "react";
-import UserActions from "../actions/UserAction";
+import UserProfileActions from "../actions/UserPrAction";
 import OrderHystory from "./UserHystory.jsx";
 
 function getStateFromFlux(){
     return {
-        isLoading: UserStore.isLoading(),
-        user: UserStore.getUser(),
-        status: UserStore.getStatus()
+        isLoading: UserProfileStore.isLoading(),
+        userF: UserProfileStore.getUserF(),
+        status: UserProfileStore.getStatus()
     }
 }
 export default class UserArea extends React.Component {
@@ -19,29 +19,30 @@ export default class UserArea extends React.Component {
 
     }
     componentWillMount() {
-        UserActions.profileUser();
+        UserProfileActions.profileUser();
     };
 
     componentDidMount() {
-        UserStore.addChangeListener(this._onChange);
+        UserProfileStore.addChangeListener(this._onChange);
     };
 
     componentWillUnmount() {
-        UserStore.removeChangeListener(this._onChange);
+        UserProfileStore.removeChangeListener(this._onChange);
     };
 
     /*<FormRegistr onUserAdd={this.handleUserAdd}/>*/
     render(){
         if(this.state.status == '200'){
+            console.log(this.state.userF.map(userF =>userF.email))
             return (
                     <div className="AppUser container">
                         <h1>Мой профиль</h1>
-                        {this.state.user.map(user =>
-                            <div><p>Имя: {user.userName}</p><p>Email: {user.email}</p></div>
+                        {this.state.userF.map(userF =>
+                            <div><p>Имя: {userF.userName}</p><p>Email: {userF.email}</p></div>
 
                         )
                         }
-                        <OrderHystory userEmail={this.state.user.map(user =>user.email)}/>
+                        <OrderHystory userEmail={this.state.userF.map(userF =>userF.email)}/>
                 </div>
 
             )

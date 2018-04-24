@@ -29,11 +29,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({orgin:'*'}));
 
-//app.use(express.static(path.join(__dirname, 'public')));
 
-/*app.get('*', function(request, response) {
-    response.sendFile('C:/Users/Пользователь/WebstormProjects/untitled/public/index.html');
-});*/
+
 
 var sessionStore = new MongoStore({
     host: '127.0.0.1',
@@ -99,9 +96,8 @@ app.delete('/films/:id', (req, res) => {
 
 });
 
-app.get('/order', function(req,res){
-    console.log(req)
-    dbOrder.ListOrder(req.body.email).then(data => res.send(data));
+app.post('/orderShow', function(req,res){
+    dbOrder.ListOrder(req.body).then(data => res.send(data));
 });
 
 app.post('/order', (req, res) => {
@@ -111,9 +107,8 @@ app.post('/order', (req, res) => {
 
 app.get('/user', (req, res) => {
     if(userId != ''){
-        dbUser.logoIn(req.body).then(data => res.send(data),);
+        dbUser.logoIn(req.body).then(data => res.send(data));
         req.session.userId = userId;
-        console.log(req.session.userId)
         res.status(200)
     } else {
         res.status(401)
@@ -160,13 +155,15 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.get('/profile', function (req, res) {
-    dbUser.profile(userId);
+app.post('/profile', function (req, res) {
+    dbUser.profile(userId).then(data => res.send(data));
 });
+
+
 
 
 const server = app.listen(serverPort, ()=>{
     console.log('Listening on port ${ serverPort }');
 });
 
-//module.exports = app;
+
