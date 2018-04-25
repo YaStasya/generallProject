@@ -7,7 +7,6 @@ export function setUpConnection(){
 }
 
 export function ListOrder(email){
-    console.log(email)
     return Order.find({email:email});
 }
 

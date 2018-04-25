@@ -18,10 +18,12 @@ export default class AppMenu extends React.Component {
         super(props);
 
         this._onChange = this._onChange.bind(this);
+        this.ShowMenu = this.ShowMenu.bind(this);
         this.state = getStateFromFlux();
     }
     componentWillMount() {
         MenuAction.loadMenu();
+        this.setState({display:'none'})
     };
 
     componentDidMount() {
@@ -36,11 +38,27 @@ export default class AppMenu extends React.Component {
     handleMenuAdd(data) {
         MenuAction.createMenu(data);
     };
+    ShowMenu() {
+        if(this.state.display == 'block'){
+            this.setState({display:'none'})
+        } else {
+            this.setState({display:'block'})
+        }
+    };
     render(){
+        var style={display:this.state.display}
         return (
             <div>
                 <div className="App">
-                    <MenuGrid menu={this.state.menu}/>
+                    <div className="customMenu">
+                        <MenuGrid menu={this.state.menu}/>
+                    </div>
+                    <div className="customMenuMob">
+                        <i className="fa fa-reorder" onClick={this.ShowMenu}></i>
+                        <div  style = {style}>
+                            <MenuGrid menu={this.state.menu}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

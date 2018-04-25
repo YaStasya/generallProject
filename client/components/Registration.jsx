@@ -29,7 +29,7 @@ export default class FormRegistr extends React.Component {
     };
     handleUserAdd(event){
        if(this.state.userName || this.state.email || this.state.password){
-           if(this.state.userName || this.state.email || this.state.password){
+           if(this.state.userName == '' || this.state.email == '' || this.state.password == ''){
                alert('Заполните все поля!')
            } else {
                const newUser = {
@@ -51,8 +51,8 @@ export default class FormRegistr extends React.Component {
                 <h1>Регистрация</h1>
                     <div className="form-group">
                         <input type="text" name="userName" placeholder="Имя" onChange={this.handleUserNameChange} value={this.state.userName} requied/>
-                        <input type="text" name="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} requied/>
-                        <input type="password" name="password" placeholder="Пароль" onChange={this.handlePasswordChange} value={this.state.password} requied/>
+                        <input type="email" name="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} requied/>
+                        <input type="password" name="password" placeholder="Пароль" minlength="6" onChange={this.handlePasswordChange} value={this.state.password} requied/>
                     </div>
                     <button onClick={this.handleUserAdd}>Зарегистрироваться</button>
             </div>

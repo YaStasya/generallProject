@@ -55,7 +55,6 @@ export default class OrderEditor extends React.Component {
         this.setState({row:event.target.value})
     };
     handleOrderAdd(event){
-        console.log(11111)
         const newOrder = {
             email           : this.state.email,
             id_film         : this.props.film.id,

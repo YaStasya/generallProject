@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import md5 from 'md5';
 const Schema =  mongoose.Schema;
 const UserSchema = new Schema({
     userName       : { type: String, required: true },
@@ -8,6 +8,7 @@ const UserSchema = new Schema({
 });
 
 UserSchema.statics.authenticate = function (email, password, callback) {
+
     User.findOne({ email: email }, function (err, user) {
             if (err) {
                 return callback(err)
@@ -16,9 +17,14 @@ UserSchema.statics.authenticate = function (email, password, callback) {
                 err.status = 401;
                 return callback(err, '');
             } else {
-                if (password == user.password) {
+                var hash = md5(password);
+                console.log(hash);
+                console.log(user.password)
+                if (hash == user.password) {
+                    console.log(222222222)
                     return callback(null, user);
                 } else {
+                    console.log(333333333)
                     return callback();
                 }
             }

@@ -33,7 +33,6 @@ export default class UserArea extends React.Component {
     /*<FormRegistr onUserAdd={this.handleUserAdd}/>*/
     render(){
         if(this.state.status == '200'){
-            console.log(this.state.userF.map(userF =>userF.email))
             return (
                     <div className="AppUser container">
                         <h1>Мой профиль</h1>

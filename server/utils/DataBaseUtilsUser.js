@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import '../models/User';
 var ObjectId = require('mongodb').ObjectID;
+import md5 from 'md5';
 
 const User = mongoose.model('User');
 export function setUpConnection(){
@@ -12,10 +13,11 @@ export function logoIn(){
 }
 
 export function createUser(userData) {
+    var hash3 = md5(userData.password);
     const user = new User({
         email       : userData.email,
         userName   : userData.username,
-        password    : userData.password,
+        password    : hash3,
         createdAt   : new Date()
     });
 

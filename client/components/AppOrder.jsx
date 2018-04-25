@@ -34,7 +34,6 @@ export default class AppOrder extends React.Component {
 /*<OrderGrid order={this.state.order} />*/
     render(){
         var style={ display: this.props.displayBlock };
-        console.log(style)
         return (
             <div className="App" style={style}>
                 <OrderForm film={this.props.film} onOrderAdd={this.handleOrderAdd} />

@@ -29,8 +29,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({orgin:'*'}));
 
+var morgan = require('morgan')
 
-
+app.use(morgan('combined'))
 
 var sessionStore = new MongoStore({
     host: '127.0.0.1',
@@ -135,7 +136,7 @@ app.post('/user', (req, res) => {
                 res.status(401);
             }
             res.redirect('/');
-            data => res.send(data)
+            data => res.send(data);
         });
     } else {
         var err = new Error('All fields required.');
@@ -160,10 +161,8 @@ app.post('/profile', function (req, res) {
 });
 
 
-
-
 const server = app.listen(serverPort, ()=>{
     console.log('Listening on port ${ serverPort }');
 });
-
+module.exports = app;
 

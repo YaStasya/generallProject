@@ -46,7 +46,6 @@ const TasksStore5 = Object.assign({}, EventEmitter.prototype, {
 });
 
 AppDispatcherUserPr.register(function(action) {
-    console.log(action)
     switch(action.type) {
         case AppConstantsUsPr.LOAD_USERPR_REQUEST: {
             _isLoading = true;

@@ -42,9 +42,11 @@ export default class AppAuth extends React.Component {
     }
     handleUserLogin(userData) {
         UserActions.loginUser(userData);
+        location.reload();
     }
     handleUserLogout(userData) {
         UserActions.logoutUser();
+        location.reload();
     }
 /*<FormRegistr onUserAdd={this.handleUserAdd}/>*/
     render(){

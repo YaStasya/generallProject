@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './components/AppMenu.jsx';
 import Auth from './components/AppUser.jsx';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import Main from './page/Main.jsx';
 import About from './page/About.jsx';
 import Gallery from './page/Gallery.jsx';
@@ -16,25 +16,25 @@ import Registration from './components/Registration.jsx';
 
 ReactDOM.render(
     <div>
-        <BrowserRouter>
+        <HashRouter>
             <div>
             <div id="header">
                 <div className="container">
-                    <div className="logoHeader col-md-2 col-xs-6">
+                    <div className="logoHeader col-md-2 col-sm-4 col-xs-8">
                         <img src="/img/logoPr.png" alt=""/>
                     </div>
-                    <div id="custommenu" className="col-md-9 col-xs-12">
+                    <div id="custommenu" className="col-md-9 col-sm-6 col-xs-2">
                         <div id="menu">
                             <App/>
                         </div>
                     </div>
-                    <div id="user" className="col-md-1 col-xs-12">
+                    <div id="user" className="col-md-1 col-sm-2 col-xs-2">
                     <Auth/>
                     </div>
                 </div>
             </div>
             <div>
-                <Route path="/" component={Main}/>
+                <Route exact path="/" component={Main}/>
                 <Route path="/about" component={About}/>
                 <Route path="/gallery" component={Gallery}/>
                 <Route path="/news" component={News}/>
@@ -45,7 +45,7 @@ ReactDOM.render(
 
             </div>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     </div>,
     document.getElementById('wrapper')
 )

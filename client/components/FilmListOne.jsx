@@ -18,10 +18,8 @@ export default class FilmGrid extends React.Component {
     onCloseModal(){
         this.setState({ open: false });
         this.setState({displayBlock: 'none'});
-        console.log(this.state.displayBlock)
     };
     onShowFrom(){
-        console.log(this.state.displayBlock)
         if(this.state.displayBlock == 'none') {
             this.setState({displayBlock: 'block'});
         } else {

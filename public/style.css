@@ -35,14 +35,15 @@ h6 {font-size: 16px;}
 
 
 #header{min-height:60px;background:#880707;padding:10px 0;margin-bottom:10px}
-#header .logoHeader img{max-width:190px}
+#header .logoHeader img{max-width:190px;width:100%}
 
 /*----Меню----*/
-#custommenu{text-align:right;}
+#custommenu{text-align:right;padding: 0;}
 #custommenu ul{list-style:none;padding:8px 0 0;margin: 0;}
 #custommenu ul li{display:inline-block;padding:10px;}
 #custommenu ul li a{color:#fff}
 #custommenu ul li a:hover{text-decoration:underline}
+.customMenuMob{display:none}
 
 /*-----Фильмы----*/
 .filList h2{font-size: 45px;text-align: center;font-family: Comic Sans MS, Monaco, cursive;}
@@ -123,6 +124,21 @@ h6 {font-size: 16px;}
 .col-xs-1{width:8.33333333%}
 @media all and (max-width: 767px) {
     .container {width: 100%;}
+    h1 {font-size: 35px;}
+    .logoFooter{text-align:center}
+    #custommenu{padding:10px}
+    .customMenu{display:none}
+    .customMenuMob{display:block;position:relative}
+    .customMenuMob i{color: #fff;font-size: 25px;}
+    .customMenuMob> div{display: block; position: absolute; top: 130%; right: -18px; text-align: right; background: rgb(255, 255, 255); border: 2px solid rgb(136, 7, 7); border-radius: 8px; min-width: 130px; padding: 10px; z-index: 9;}
+    #custommenu .customMenuMob ul li{display:block;padding:5px}
+    #custommenu .customMenuMob ul li a{color:#000}
+}
+@media all and (max-width: 480px) {
+    .logoHeader{padding:0}
+    .filList ul{display:block}
+    .filList ul li{margin:10px 0}
+    .AppAuth .hiddenBlock:before{display:none}
 }
 @media all and (min-width: 768px) {
     .col-sm-12{width:100%}
